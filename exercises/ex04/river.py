@@ -21,26 +21,43 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
-        return None
+        surviving_fish: list[Fish] = []
+        surviving_bears: list[Bear] = []
+        for fish in self.fish:
+            if fish.age <= 3:
+                surviving_fish.append(fish)
+        self.fish = surviving_fish
+        for bear in self.bears:
+            if bear.age <= 5:
+                surviving_bears.append(bear)
+        self.bears = surviving_bears
 
     def bears_eating(self):
-        return None
+        for bear in self.bears:
+            if len(self.fish) >= 5:
+                self.remove_fish(3)
+                bear.eat(3)
 
     def check_hunger(self):
-        return None
+        new_bears: list[Bear] = []
+        for bear in self.bears:
+            if hunger_score > 0:
+                new_bears.append(bear)
+        self.bears = new_bears
 
     def repopulate_fish(self):
         return None
 
     def repopulate_bears(self):
-        return None
+        n: int
+        for bear in self.bears:
+            if len(self.bears) % 2 == 0:
+                
 
     def view_river(self) -> None:
-        print(
-            f"~~~Day {self.day}:~~~ \
-            Fish Population: {self.fish} \
-            Bear Population: {self.bears}"
-        )
+        print(f"~~~Day {self.day}:~~~")
+        print(f"Fish Population: {len(self.fish)}")
+        print(f"Bear Population: {len(self.bears)}")
 
     def one_river_day(self):
         """Simulate one day of life in the river"""
@@ -64,3 +81,23 @@ class River:
         self.repopulate_bears()
         # Visualize River
         self.view_river()
+
+    def one_river_week(self):
+        count = 0
+        while count < 7:
+            self.one_river_day()
+            count += 1
+        return
+
+    def remove_fish(self, amount: int):
+        for fish in self.fish:
+            idx: int = 0
+            amount = 0
+            while idx < amount:
+                self.fish.pop(idx)
+                idx += 1
+        for bear in self.bears:
+            idx: int = 0
+            while idx < amount:
+                self.bears.pop(idx)
+                idx += 1
