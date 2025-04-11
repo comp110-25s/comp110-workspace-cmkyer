@@ -1,6 +1,8 @@
 __author__: str = "730822368"
 
 
+# from exercises.ex04.river import River
+
 # CHANGE TO EX UPPERCASE
 from exercises.EX04.river import River
 

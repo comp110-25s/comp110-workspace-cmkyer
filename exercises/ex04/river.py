@@ -3,8 +3,8 @@ __author__: str = "730822368"
 
 """File to define River class."""
 
-from exercises.ex04.fish import Fish
-from exercises.ex04.bear import Bear
+from exercises.EX04.fish import Fish
+from exercises.EX04.bear import Bear
 
 
 class River:
@@ -14,7 +14,7 @@ class River:
     hunger_score: int
 
     def __init__(self, num_fish: int, num_bears: int):
-        """New River with num_fish Fish and num_bears Bears"""
+        """New River with num_fish Fish and num_bears Bears."""
         self.day: int = 0
         self.fish: list[Fish] = []
         self.bears: list[Bear] = []
@@ -24,8 +24,8 @@ class River:
         for _ in range(0, num_bears):
             self.bears.append(Bear())
 
-    def check_ages(self):
-        """identifies when fish and bears reach a certain age and die"""
+    def check_ages(self) -> None:
+        """Identifies when fish and bears reach a certain age and die."""
         surviving_fish: list[Fish] = []
         surviving_bears: list[Bear] = []
         for fish in self.fish:
@@ -37,15 +37,15 @@ class River:
                 surviving_bears.append(bear)
         self.bears = surviving_bears
 
-    def bears_eating(self):
-        """removes a certain number of fish that the bear eats"""
+    def bears_eating(self) -> None:
+        """Removes a certain number of fish that the bear eats."""
         for bear in self.bears:
             if len(self.fish) >= 5:
                 self.remove_fish(3)
                 bear.eat(3)
 
-    def check_hunger(self):
-        """removes bears whose hunger score gets too low"""
+    def check_hunger(self) -> None:
+        """Removes bears whose hunger score gets too low."""
         new_bears: list[Bear] = []
         self.hunger_score: int
         for bear in self.bears:
@@ -53,26 +53,26 @@ class River:
                 new_bears.append(bear)
         self.bears = new_bears
 
-    def repopulate_fish(self):
-        """models reproduction of fish"""
+    def repopulate_fish(self) -> None:
+        """Models reproduction of fish."""
         baby_fish = len(self.fish) // 2
         for __ in range(baby_fish):
             self.fish.append(Fish())
 
-    def repopulate_bears(self):
-        """models reproduction of bears"""
+    def repopulate_bears(self) -> None:
+        """Models reproduction of bears."""
         baby_bears = (len(self.bears) // 2) * 4
         for __ in range(baby_bears):
             self.bears.append(Bear())
 
     def view_river(self) -> None:
-        """Tells us the populations of bears and fish on a given day"""
+        """Tells us the populations of bears and fish on a given day."""
         print(f"~~~Day {self.day}:~~~")
         print(f"Fish Population: {len(self.fish)}")
         print(f"Bear Population: {len(self.bears)}")
 
-    def one_river_day(self):
-        """Simulate one day of life in the river"""
+    def one_river_day(self) -> None:
+        """Simulate one day of life in the river."""
         # Increase day by 1
         self.day += 1
         # Simulate one day for all Bears
@@ -94,16 +94,15 @@ class River:
         # Visualize River
         self.view_river()
 
-    def one_river_week(self):
-        """tells us how bear and fish pops change throughout a week"""
+    def one_river_week(self) -> None:
+        """Tells us how bear and fish pops change throughout a week."""
         count = 0
         while count < 7:
             self.one_river_day()
             count += 1
-        return
 
-    def remove_fish(self, amount: int):
-        """removes fish when they are eaten or die of old age"""
+    def remove_fish(self, amount: int) -> None:
+        """Removes fish when they are eaten or die of old age."""
         for fish in self.fish:
             idx: int = 0
             amount = 0
